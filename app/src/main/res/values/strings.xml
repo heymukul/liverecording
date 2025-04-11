@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Liverecoding</string>
+    <string name="enter_rtsp_url">Enter RTSP URL</string>
+    <string name="play">Play</string>
+    <string name="pip_mode">Pip Mode</string>
+    <string name="record">Record</string>
+</resources>
