@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun toggleRecording() {
-        val outputPath = File(getExternalFilesDir(null), "recoded.mp4").absolutePath
+        val outputPath = getRecordingOutputPath()
         if (!isRecording){
             media?.addOption(":sout=#duplicate{dst=display,dst=standard{access=file,mux=mp4,dst=$outputPath}}")
             Toast.makeText(this,"Recording Started",Toast.LENGTH_SHORT).show()
@@ -87,6 +87,16 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Recording Save", Toast.LENGTH_SHORT).show()
             isRecording = false
         }
+    }
+
+    private fun getRecordingOutputPath(): String {
+        val recordingsDir = File(getExternalFilesDir(null), "recordings")
+        if (!recordingsDir.exists()) {
+            recordingsDir.mkdirs()
+        }
+
+        val fileName = "recorded_${System.currentTimeMillis()}.mp4"
+        return File(recordingsDir, fileName).absolutePath
     }
 
     override fun onStop() {
